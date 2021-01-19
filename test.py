@@ -39,8 +39,11 @@ if __name__ == "__main__":
     for i in range(10):
         print(f"generating new tor circuit...")
         userName, password = generateNewSocks5Auth()
-        content = getHttpContentStringUsingSocks5("https://whatsmyip.com", userName,
-                password)
+        try:
+            content = getHttpContentStringUsingSocks5("https://whatsmyip.com/", 
+                    userName, password)
+        except:
+            print("can't access https://whatsmyip.com/")
         yourIpIndex = content.find("Your IP</span>")
         ipAddress= content[yourIpIndex+16:yourIpIndex+40]
         while not ipAddress[-1].isdigit():
