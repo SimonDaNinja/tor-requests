@@ -48,7 +48,7 @@ def getHttpContentStringUsingSocks5(httpUrl, username = None, password = None,
         auth += '@'
     if proxy is None:
         proxy = TOR_PROXY
-    socksServer = 'socks5://' + auth + proxy
+    socksServer = 'socks5h://' + auth + proxy
     proxies = {'http': socksServer, 'https': socksServer}
     rsp = requests.get(httpUrl, proxies = proxies)
     return str(rsp.content)
