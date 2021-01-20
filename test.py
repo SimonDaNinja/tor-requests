@@ -1,3 +1,23 @@
+# SimonDaNinja/Tor-Requests: a bit of playing around with SOCKS5 and Tor for
+# self-didactic purposes
+#
+# Copyright (C) 2021  Simon Liljestrand
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+#
+# The author can be reached by electronic mail at simon@simonssoffa.xyz
+
 import requests
 import secrets
 
@@ -29,13 +49,17 @@ def getHttpContentStringUsingSocks5(httpUrl, username = None, password = None,
         proxy = TOR_PROXY
     socksServer = 'socks5://' + auth + proxy
     proxies = {'http': socksServer, 'https': socksServer}
-    rsp = requests.get(httpUrl, proxies=proxies)
+    rsp = requests.get(httpUrl, proxies = proxies)
     return str(rsp.content)
 
 # as demonstration, generate 10 different tor circuits and display user's
 # apparent IP. (assumes the user has Tor installed, and is currently running
-#it on 127.0.0.1:9050)
+# it on 127.0.0.1:9050)
 if __name__ == "__main__":
+    print("SimonDaNinja/Tor-Requests  Copyright (C) 2021  Simon Liljestrand\n" + \
+    "This program comes with ABSOLUTELY NO WARRANTY.\n" + \
+    "This is free software, and you are welcome to redistribute it\n" + \
+    "under certain conditions.\n")
     for i in range(10):
         print(f"generating new tor circuit...")
         userName, password = generateNewSocks5Auth()
