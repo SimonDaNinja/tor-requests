@@ -17,7 +17,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 #
-# The author can be reached by electronic mail at simon@simonssoffa.xyz
+# The author of the software can be reached by electronic mail at 
+# simon@simonssoffa.xyz
 
 import requests
 import secrets
