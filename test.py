@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 # SimonDaNinja/Tor-Requests: a bit of playing around with SOCKS5 and Tor for
 # self-didactic purposes
 #
