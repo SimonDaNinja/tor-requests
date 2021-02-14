@@ -68,10 +68,10 @@ if __name__ == "__main__":
         try:
             content = getHttpContentStringUsingSocks5("https://whatsmyip.com/", 
                     userName, password)
+            yourIpIndex = content.find("Your IP</span>")
+            ipAddress= content[yourIpIndex+16:yourIpIndex+40]
+            while not ipAddress[-1].isdigit():
+                ipAddress = ipAddress.replace(ipAddress[-1], '')
+            print(f"your apparent IP adress is: {ipAddress}")
         except:
             print("can't access https://whatsmyip.com/")
-        yourIpIndex = content.find("Your IP</span>")
-        ipAddress= content[yourIpIndex+16:yourIpIndex+40]
-        while not ipAddress[-1].isdigit():
-            ipAddress = ipAddress.replace(ipAddress[-1], '')
-        print(f"your apparent IP adress is: {ipAddress}")
