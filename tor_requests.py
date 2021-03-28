@@ -38,7 +38,7 @@ def generateNewSocks5Auth(userNameLen = 30, passwordLen = 30):
     password = "".join([rnd.choice(alphaNumeric) for i in range(passwordLen)])
     return username, password
 
-def getHttpContentStringUsingSocks5(httpUrl, username = None, password = None, 
+def getHttpResponseUsingSocks5(httpUrl, username = None, password = None, 
         proxy = None, automaticStreamIsolation = None):
 
     if automaticStreamIsolation is None:
@@ -62,6 +62,12 @@ def getHttpContentStringUsingSocks5(httpUrl, username = None, password = None,
     socksServer = 'socks5h://' + auth + proxy
     proxies = {'http': socksServer, 'https': socksServer}
     rsp = requests.get(httpUrl, proxies = proxies)
+    return rsp
+
+def getHttpContentStringUsingSocks5(httpUrl, username = None, password = None, 
+        proxy = None, automaticStreamIsolation = None):
+
+    rsp = getHttpResponseUsingSocks5(httpUrl, username = username, password = password)
     return str(rsp.content)
 
 # as demonstration, generate 10 different tor circuits and display user's
