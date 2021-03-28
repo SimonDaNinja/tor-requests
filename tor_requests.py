@@ -39,9 +39,20 @@ def generateNewSocks5Auth(userNameLen = 30, passwordLen = 30):
     return username, password
 
 def getHttpContentStringUsingSocks5(httpUrl, username = None, password = None, 
-        proxy = None):
+        proxy = None, automaticStreamIsolation = None):
+
+    if automaticStreamIsolation is None:
+        if username is None:
+            automaticStreamIsolation = True
+        else:
+            automaticStreamIsolation = False
+
+    if automaticStreamIsolation:
+        username, password = generateNewSocks5Auth()
+
     if username is None:
         auth = ""
+        if streamIsolate:
     else:
         auth = username
         if password is not None:
