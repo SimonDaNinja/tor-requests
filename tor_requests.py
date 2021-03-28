@@ -52,7 +52,6 @@ def getHttpContentStringUsingSocks5(httpUrl, username = None, password = None,
 
     if username is None:
         auth = ""
-        if streamIsolate:
     else:
         auth = username
         if password is not None:
