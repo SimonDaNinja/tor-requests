@@ -65,12 +65,12 @@ def getHttpResponseUsingSocks5(httpUrl, username = None, session = None, passwor
         if method.lower() == 'get':
             rsp = requests.get(httpUrl, proxies = proxies)
         elif method.lower() == 'post':
-            rsp = requests.post(httpUrl, proxies = proxies)
+            rsp = requests.post(httpUrl, postPayload, proxies = proxies)
     else:
         if method.lower() == 'get':
             rsp = session.get(httpUrl, proxies = proxies)
         elif method.lower() == 'post':
-            rsp = session.post(httpUrl, proxies = proxies)
+            rsp = session.post(httpUrl, postPayload, proxies = proxies)
     return rsp
 
 def getHttpContentStringUsingSocks5(httpUrl, username = None, password = None, 
