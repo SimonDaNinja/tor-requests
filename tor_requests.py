@@ -39,7 +39,7 @@ def generateNewSocks5Auth(userNameLen = 30, passwordLen = 30):
     return username, password
 
 def getHttpResponseUsingSocks5(httpUrl, username = None, session = None, password = None, 
-        proxy = None, automaticStreamIsolation = None):
+        proxy = None, automaticStreamIsolation = None, method = 'get', postPayload = {}):
 
     if automaticStreamIsolation is None:
         if username is None:
@@ -62,9 +62,15 @@ def getHttpResponseUsingSocks5(httpUrl, username = None, session = None, passwor
     socksServer = 'socks5h://' + auth + proxy
     proxies = {'http': socksServer, 'https': socksServer}
     if session is None:
-        rsp = requests.get(httpUrl, proxies = proxies)
+        if method.lower() == 'get':
+            rsp = requests.get(httpUrl, proxies = proxies)
+        elif method.lower() == 'post':
+            rsp = requests.post(httpUrl, proxies = proxies)
     else:
-        rsp = session.get(httpUrl, proxies = proxies)
+        if method.lower() == 'get':
+            rsp = session.get(httpUrl, proxies = proxies)
+        elif method.lower() == 'post':
+            rsp = session.post(httpUrl, proxies = proxies)
     return rsp
 
 def getHttpContentStringUsingSocks5(httpUrl, username = None, password = None, 
